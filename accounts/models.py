@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, Permission
 
 from companies.models import Enterprise
-class UserType(models.TextChoices):
+class User_Type(models.TextChoices):
     ADMIN = 'ADMIN', 'Admin'
     OWNER = 'OWNER', 'Owner'
-    USER = 'USER', 'User'
+    USER = 'EMPLOYEE', 'Employee'
     GUEST = 'GUEST', 'Guest'
 
 class User(AbstractBaseUser):
@@ -13,8 +13,8 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=150)
     type_user = models.CharField(
         max_length=5,
-        choices=UserType.choices,
-        default=UserType.USER,
+        choices=User_Type.choices,
+        default=User_Type.USER,
     )
 
     USERNAME_FIELD = 'email'
